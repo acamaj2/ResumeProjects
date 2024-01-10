@@ -76,7 +76,7 @@ void shift_out(int data){        //Sends word to SPI port
 
     CS = 0; 
 
-    ser_port.write(data); 
+    ser_port.write(data); //Writes ASCII 8bit character
 
     CS = 1; 
 

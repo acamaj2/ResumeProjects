@@ -55,13 +55,13 @@ static void on_message_sent(iotc_context_handle_t in_context_handle, void *data,
 }
 
 struct MovementData {
-  float gyro[3];
+  float gyro[3]; //3 axis values
   int16_t accel[3];
 };
 
 static std::vector<MovementData> movementReadings;
 
-static void recordMovement() {
+static void recordMovement() { 
   MovementData data;
 
   BSP_GYRO_GetXYZ(data.gyro);
@@ -80,7 +80,7 @@ static void publishMovements(iotc_context_handle_t context_handle) {
     } else {
       messageData += ", ";
     }
-
+//Json data structure
     messageData += "{ \"accel\": { ";
     messageData += "\"x\": " + std::to_string(md.accel[0]) + ", ";
     messageData += "\"y\": " + std::to_string(md.accel[1]) + ", ";
@@ -105,7 +105,7 @@ static void publishMovements(iotc_context_handle_t context_handle) {
            iotc_get_state_string(state));
   }
 }
-
+//submits sensor values in 1 batch every 5 seconds
 void publish_function(iotc_context_handle_t context_handle,
                       iotc_timed_task_handle_t timed_task, void *user_data) {
 

@@ -12,7 +12,7 @@ Selects and plays one of 8 tunes, with name displayed on LCD                    
 
  
 
-PwmOut speaker(D9);        //for piezo sounder 
+PwmOut speaker(D9);        //for piezo sounder (controls frequency and duty cycle of signal)
 
 BusIn  choose(D3,D4,D5);   //for select buttons 
 
@@ -26,7 +26,7 @@ InterruptIn play(D2);     //for Play button
 
  
 
-Mutex lcd_mutex;  
+Mutex lcd_mutex;  //protect code from concurency issues
 
  
 
@@ -72,9 +72,9 @@ void LCD_cont(void const *args){
 
         print_lcd("Choose song"); 
 
-        write_cmd(0xc0); 
+        write_cmd(0xc0); //sets command mode of LCD
 
-        print_lcd("Then press Play");  
+        print_lcd("Then press Play");  //Prints to LCD
 
         lcd_mutex.unlock(); 
 

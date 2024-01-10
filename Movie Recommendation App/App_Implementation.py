@@ -3,27 +3,27 @@ import streamlit as st
 import requests
 
 def fetch_poster(movie_id):
-    url = "https://api.themoviedb.org/3/movie/{}?api_key=67607a0dd8f9e693caebde7e16416175".format(movie_id)
+    url = "https://api.themoviedb.org/3/movie/{}?api_key=67607a0dd8f9e693caebde7e16416175".format(movie_id)  # retrieves poster path from IMDB database
     data = requests.get(url)
     data = data.json()
     poster_path = data['poster_path']
     full_path = "http://image.tmdb.org/t/p/w500/" + poster_path
     return full_path
 
-def recommend(movie):
-    index = movies[movies['title'] == movie].index[0]
-    distances = sorted(list(enumerate(similarity[index])), reverse=True, key = lambda x: x[1])
+def recommend(movie):                                                                                  
+    index = movies[movies['title'] == movie].index[0]                                                   #Get movie title
+    distances = sorted(list(enumerate(similarity[index])), reverse=True, key = lambda x: x[1])          #Makes a ordered list of most similar movies
     recommended_movies_names = []
     recommended_movies_poster = []
-    for i in distances[1:6]:
+    for i in distances[1:6]:                                                                            #Gets the movie posters and names of top 5 similar movies
         movie_id = movies.iloc[i[0]].movie_id
-        recommended_movies_poster.append(fetch_poster(movie_id))
+        recommended_movies_poster.append(fetch_poster(movie_id)) 
         recommended_movies_names.append(movies.iloc[i[0]].title)
     return recommended_movies_names, recommended_movies_poster
 
 st.header("Movie Recommendation System")
-movies = pickle.load(open('artifacts/movie_list.pk1', 'rb'))
-similarity = pickle.load(open('artifacts/similarity.pk1', 'rb'))
+movies = pickle.load(open('artifacts/movie_list.pk1', 'rb'))                                            # Contains all movie titles
+similarity = pickle.load(open('artifacts/similarity.pk1', 'rb'))                                        # Contains movie vectors
 
 movie_list = movies['title'].values
 selected_movie = st.selectbox(
@@ -31,7 +31,7 @@ selected_movie = st.selectbox(
     movie_list
 )
 
-if st.button('Show Recommendation'):
+if st.button('Show Recommendation'):                                                                    # Prints top 5 movie titles and posters
     recommended_movies_name, recommended_movies_poster = recommend(selected_movie)
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:

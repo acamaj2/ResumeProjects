@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sensor Data Viewer</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- Title-->
+</head>
+
+<body>
+    <h1>Sensor Data</h1>                                <!-- Table with all sensor data-->
+    <table id="data-table" border="1">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Temperature</th> 
+                <th>Humidity</th>
+                <th>Pressure</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>  
+
+    <script>  
+        const dataTable = document.getElementById('data-table');                            
+        const dataTableBody = dataTable.getElementsByTagName('tbody')[0]; 
+
+        function loadData() {
+            dataTableBody.innerHTML = '';  
+
+            axios.get('URL-TO-YOUR-CLOUD-FUNCTION').then(function (data) {   <!-- Call to Cloud function-->
+                for (const reading of data.data) {
+                    const row = document.createElement('tr');
+
+                    const timeCell = document.createElement('td');   <!-- Format date-->
+                    const ts = new Date(reading.timestamp);
+                    timeCell.innerText = ts.toLocaleString('en-GB');
+                    row.appendChild(timeCell);
+
+                    const tempCell = document.createElement('td');
+                    tempCell.innerHTML = reading.temperature.toFixed(1) + ' &deg;C';
+                    row.appendChild(tempCell);
+
+                    const humCell = document.createElement('td');
+                    humCell.innerText = reading.humidity.toFixed(0) + '%';
+                    row.appendChild(humCell);
+
+                    const presCell = document.createElement('td');
+                    presCell.innerText = reading.pressure.toFixed(1);
+                    row.appendChild(presCell);
+
+                    dataTableBody.appendChild(row);
+                }
+            });
+        }
+
+        setInterval(loadData, 5000);
+        loadData();
+    </script>
+</body>
+
+</html>
