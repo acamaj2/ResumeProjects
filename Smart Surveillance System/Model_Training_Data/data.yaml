@@ -1,0 +1,12 @@
+names:
+- Alex
+nc: 1
+roboflow:
+  license: Private
+  project: surveillance-uyyef
+  url: https://app.roboflow.com/bro-xs4oj/surveillance-uyyef/1
+  version: 1
+  workspace: bro-xs4oj
+test: ../test/images
+train: Surveillance-1/train/images
+val: Surveillance-1/valid/images
