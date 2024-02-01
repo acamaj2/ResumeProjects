@@ -1,5 +1,7 @@
 Thank you for checking out my resume projects! Feel free to explore the documentation to get started. 
+
 Quick System Overview:
+
 Smart Surveillance System |
 Technologies Used: Python, YOLO, NumPy, OpenCV, Arduino
 
