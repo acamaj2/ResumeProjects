@@ -1,16 +1,16 @@
 Thank you for checking out my resume projects! Feel free to explore the documentation to get started. If you have any questions or feedback, don't hesitate to reach out.
 
-Smart Surveillance System:
+Smart Surveillance System |
 Technologies Used: Python, YOLO, NumPy, OpenCV, Arduino
 
-Movie Recommendation App 
+Movie Recommendation App | 
 Technologies Used: Python, Scikit-learn, Pandas, NumPy, Streamlit
 
-Activity Tracker
+Activity Tracker |
 Technologies Used: C++, C, Java, JavaScript, HTML, STM32
 
-Illini Autonomous Electric Vehicle 
+Illini Autonomous Electric Vehicle |
 Technologies Used: Python, C++, ROS2, OpenCV, YOLO
 
-Audio Player 
+Audio Player |
 Technologies Used: C++, C, STM32
