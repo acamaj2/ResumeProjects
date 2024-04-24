@@ -1,4 +1,4 @@
-Thank you for checking out my resume projects! Feel free to explore the documentation to get started. 
+Thank you for checking out my personal projects! Feel free to explore the documentation to get started. 
 
 Quick Overview:
 
